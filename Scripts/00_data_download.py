@@ -1,7 +1,7 @@
 ################################################################################################
 # Author: Joan Ponsa
 # Created on: 29/10/2023
-# Last modified: 29/10/2023
+# Last modified: 30/10/2023
 #
 # Downloads the original UCI heart diseases dataset and joins the data in a single file
 #
@@ -28,7 +28,7 @@ if not os.path.isdir(WORKING_DIR + "/Data/Original_dataset/"):
     print(WORKING_DIR + "/Data/Original_dataset/ created")
 
 # Download data from UCI
-if ~os.path.isfile(WORKING_DIR + "/Data/Original_dataset/heart+disease.zip"):
+if not os.path.isfile(WORKING_DIR + "/Data/Original_dataset/heart+disease.zip"):
     # Download file
     import urllib.request
 
@@ -70,7 +70,15 @@ df = pd.DataFrame([], columns=["data_center"] + column_names)
 
 for center in data_centers:
     # Read the original dataset
-    tmp = pd.read_csv(f"Data/Original_dataset/processed.{center}.data", header=None)
+    center_file = f"Data/Original_dataset/processed.{center}.data"
+    sep = ","
+    ## If reprocessed file exist use it instead of processed
+    if os.path.isfile(WORKING_DIR + f"Data/Original_dataset/reprocessed.{center}.data"):
+        center_file = f"Data/Original_dataset/reprocessed.{center}.data"
+        sep = " "
+
+    tmp = pd.read_csv(WORKING_DIR + center_file, header=None, sep=sep)
+
     # Add the column names
     tmp.columns = column_names
     # Add a column with the data center name (source of the data)

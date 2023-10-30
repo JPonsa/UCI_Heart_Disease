@@ -81,6 +81,8 @@ feature_subset = [
     "thalach",
     "exang",
     "oldpeak",
+    "slope",
+    "num",
     "num_01",
 ]
 # Trim feature to only the selected subset
