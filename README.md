@@ -12,9 +12,11 @@ To build the model, several classification algorithms were tested, including log
 The most important features for predicting heart disease were found to be the presence of chest pain (type 2 and 3) and exercise induced angina. The trained model can now be used on new patient data to estimate the likelihood of heart disease, allowing for earlier intervention and improved outcomes as part of a **Clinical Decision Support Systems** (CDSS). Overall this project demonstrates the feasibility of using machine learning for disease prediction based on medical data.
 
 ## Goals:
-- Produce a binary classification model that matches the performance reported in the Dataset Repo of Accuracy and Precisions over 80%.
-- Produce a multi-lable classification model and compare the performance with the binary classification.
-- Create a Clinical Decision Support System for of a UI interphase that allows users (e.g. clinicians) to enter an individual's parameters and obtain the probability of suffering from a heart disease
+- Produce a binary classification model that matches the performance reported in the Dataset Repo of Accuracy and Precisions over 80%. <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/White_check_mark_in_dark_green_rounded_square.svg" widht="15" height="15"/>
+
+- Produce a multi-lable classification model and compare the performance with the binary classification. <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg" widht="15" height="15"/>
+
+- Create a Clinical Decision Support System for of a UI interphase that allows users (e.g. clinicians) to enter an individual's parameters and obtain the probability of suffering from a heart disease.
 
 ## About the data
 The UCI Heart Diseases dataset is the combination of 4 databases (Cleveland, Hungary, Switzerland, and the VA Long Beach)
@@ -62,16 +64,11 @@ Data Source: https://archive.ics.uci.edu/dataset/45/heart+disease
 
 Please, see [Data > Original_dataset > heat-diease](./Data/Original_dataset/heart-disease.names) file provided by the authors for further detail on the dataset
 
-
-## Technology
--
-- 
-
 ## Observations
 
 1. **Low correlation between the features.**
 
- A simple linear correlation (Pearson's r2) shows no relationship between a single feature and the targe(s) (num and num_01). The strongest correlation is observed with thalach, oldpeak, ca and thal. However, as we will se below, the last two features will be removed from the training dataset due to the large amount of missing values. 
+ A simple linear correlation (Pearson's r2) shows no strong relationship between a single feature and the targe(s) (num and num_01). The strongest correlation is observed with thalach, oldpeak, ca and thal. However, as we will se below, the last two features will be removed from the training dataset due to the large amount of missing values. 
 
 
 ![Feature Correlation](./Figures/10.feature_correlation.png)
@@ -100,7 +97,18 @@ SHAP values were computed as measure of feature importance. Shapley values are a
 
 <img src="./Figures/40.binary_classifier_shap_values.png" alt="drawing" width="600"/>
 
-## Lessons Learned
-- 
+## CDSS with Streamlit.
+
+Using NHS Streamlig App template[2]
+
+## Future work
+- Produce a multi-lable classification model and compare the performance with the binary classification. I attempted it but the performance was very poor.No model and configuration I tried was able to differentiate between the different types of heart disease. In future iterations I will try to implement a Synthetic Minority Oversampling Technique (SMOTE)[3]
+
+- Impute missing values. This could help with the performance of the multi-label classifier by increasing the training dataset.
+
 ## References:
  [1] Janosi,Andras, Steinbrunn,William, Pfisterer,Matthias, and Detrano,Robert. (1988). Heart Disease. UCI Machine Learning Repository. https://doi.org/10.24432/C52P4X.
+
+ [2] NHS Streamlit App template. https://github.com/nhs-pycom/nhs-streamlit-template
+
+ [3] Chawla, N.V. et al., 2002. SMOTE: synthetic minority over-sampling technique. Journal of artificial intelligence research, 16, pp.321–357.
