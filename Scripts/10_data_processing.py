@@ -20,7 +20,7 @@ os.chdir(WORKING_DIR)
 
 # Load original dataset
 # fmt: off
-input_file = WORKING_DIR + "Data/uci_heart_disease.original_processed.four_databases.tsv"
+input_file = WORKING_DIR + "data/uci_heart_disease.original_processed.four_databases.tsv"
 # fmt: on
 df = pd.read_csv(input_file, sep="\t")
 
@@ -91,5 +91,5 @@ df = df[feature_subset]
 df.dropna(inplace=True)
 
 # Save preprocessed data
-output_file = WORKING_DIR + "Data/uci_heart_disease.processed.tsv"
+output_file = WORKING_DIR + "data/uci_heart_disease.processed.tsv"
 df.to_csv(output_file, sep="\t", index=False)
