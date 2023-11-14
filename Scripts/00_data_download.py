@@ -1,7 +1,7 @@
 ################################################################################################
 # Author: Joan Ponsa
 # Created on: 29/10/2023
-# Last modified: 30/10/2023
+# Last modified: 14/11/2023
 #
 # Downloads the original UCI heart diseases dataset and joins the data in a single file
 #
@@ -88,6 +88,9 @@ for center in data_centers:
 
 # missing values are encoded using "?". Replace them with NaN
 df.replace("?", np.nan, inplace=True)
+
+# drop records with no disease classification
+df.dropna(subset=["num"], inplace=True)
 
 # Save concatenated data in a single file for further processing - No data changes
 output_file = (
