@@ -87,9 +87,12 @@ SVC is the winner of the model competition with an F1 score of 82% (and Accuracy
 
 Overall, I obtained similar results are reported in the Data Repository (Accuracy and Precision over 80%).However, in my analysis SVC performed much better than reported in the Data Repository. 
 
-![Binary Classfication CV](./Figures/40.binary_classifier_model_selection.png)
+![Binary Classification CV](./Figures/40.binary_classifier_model_selection.png)
 
 Note: The score for best model based on each metric is highlighted in red.
+
+Confusion matrix for the SVM after hyper-parameter tunning.
+![Best Binary Classification CM](./Figures/40.binary_confusion_matrix.png)
 
 4. **Chest pain and exercise induced angina as the most important predictive features**
 
