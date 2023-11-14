@@ -92,6 +92,7 @@ Overall, I obtained similar results are reported in the Data Repository (Accurac
 Note: The score for best model based on each metric is highlighted in red.
 
 Confusion matrix for the SVM after hyper-parameter tunning.
+
 ![Best Binary Classification CM](./Figures/40.binary_confusion_matrix.png)
 
 4. **Chest pain and exercise induced angina as the most important predictive features**
