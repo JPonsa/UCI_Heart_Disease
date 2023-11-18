@@ -99,7 +99,7 @@ Confusion matrix for the SVM after hyper-parameter tunning.
 
 SHAP values were computed as measure of feature importance. Shapley values are a method from cooperative game theory applied to machine learning. They assign a value to each feature, quantifying its contribution to a model's prediction. Shapley values help explain the "credit" each feature receives in the prediction, aiding interpretability and fairness analysis. For more information about SHAP values please visit [shap.readthedocs.io > Introduction](https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html)
 
-<img src="https://archive.ics.uci.edu/dataset/45/heart+disease/42.binary_classifier_shap_values.png" alt="drawing" width="600"/>
+<img src="https://github.com/JPonsa/UCI_Heart_Disease/blob/main/Figures/42.binary_classifier_shap_values.png" alt="drawing" width="600"/>
 
 ## CDSS with Streamlit.
 
@@ -112,14 +112,14 @@ The home page contains the following sections:
 - **How to use** - A clear description of the steps that the user must follow in order to input the patient's metrics. It also includes a description of the analysis performed and how to interpret it.
 - **Data** - A short description of the key parameters used to predict heart diseases and the source of the training data.
 
-<img src="https://archive.ics.uci.edu/dataset/45/heart+diseasecdss_streamlit_patient_home.png" alt="drawing" width="600"/>
+<img src="https://github.com/JPonsa/UCI_Heart_Disease/blob/main/Figures/cdss_streamlit_patient_home.png" alt="drawing" width="600"/>
 
 ### Patient Assessment
 This is the core of the application and contains:
 - **Patient settings** - a set of objects that enable the user the easily introduce of patient metrics. The parameters are already set to the most frequent value observed based on the training dataset to facilitate the task.
 - **Patient Assessment** - The result of the prediction, indicating the category (Healty or Heart Diseases) and the probability (from 0 to 1) associated with the prediction. It also includes the analysis of the influence of the different metrics on the prediction.
 
-<img src="https://archive.ics.uci.edu/dataset/45/heart+disease/cdss_streamlit_patient_assessment.png" alt="drawing" width="600"/>
+<img src="https://github.com/JPonsa/UCI_Heart_Disease/blob/main/Figures/cdss_streamlit_patient_assessment.png" alt="drawing" width="600"/>
 
 ## Future work
 - Produce a multi-lable classification model and compare the performance with the binary classification. I attempted it but the performance was very poor.No model and configuration I tried was able to differentiate between the different types of heart disease. In future iterations I will try to implement a Synthetic Minority Oversampling Technique (SMOTE)[3]
