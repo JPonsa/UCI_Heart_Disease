@@ -7,7 +7,7 @@
 
 The goal of this project is to build a machine learning model that can predict whether a patient has heart disease based on various risk factors. The data used consists of medical records over 300 patients, including information on demographic factors (age, sex), symptoms (e.g.chest paint), and test results (e.g. resting electrocardiographic results). Each patient is labeled as having heart disease type 1-4 or not. 
 
-To build the model, several classification algorithms were tested, including logistic regression, support vector machines, and random forests. The data was split into training and test sets, and cross-validation was used to evaluate model performance during training. The Support Vector Classifier achieved the highest accuracy on the test set of about 80%. These results are consistent with previous analysis. 
+To build the model, several classification algorithms were tested, including logistic regression, support vector machines, and random forests. The data was split into training and test sets, and cross-validation was used to evaluate model performance during training. The Support Vector Classifier achieved the highest accuracy on the test set of about 80% accuracy. These results are consistent with previous analysis. 
 
 The most important features for predicting heart disease were found to be the presence of chest pain (type 2 and 3) and exercise induced angina. The trained model can now be used on new patient data to estimate the likelihood of heart disease, allowing for earlier intervention and improved outcomes as part of a **Clinical Decision Support Systems** (CDSS). Overall this project demonstrates the feasibility of using machine learning for disease prediction based on medical data.
 
@@ -16,7 +16,7 @@ The most important features for predicting heart disease were found to be the pr
 
 - Produce a multi-lable classification model and compare the performance with the binary classification. <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Cross_red_circle.svg" widht="15" height="15"/>
 
-- Create a Clinical Decision Support System for of a UI interphase that allows users (e.g. clinicians) to enter an individual's parameters and obtain the probability of suffering from a heart disease.
+- Create a Clinical Decision Support System for of a UI interphase that allows users (e.g. clinicians) to enter an individual's parameters and obtain the probability of suffering from a heart disease. <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/White_check_mark_in_dark_green_rounded_square.svg" widht="15" height="15"/>
 
 ## About the data
 The UCI Heart Diseases dataset is the combination of 4 databases (Cleveland, Hungary, Switzerland, and the VA Long Beach)
@@ -99,16 +99,36 @@ Confusion matrix for the SVM after hyper-parameter tunning.
 
 SHAP values were computed as measure of feature importance. Shapley values are a method from cooperative game theory applied to machine learning. They assign a value to each feature, quantifying its contribution to a model's prediction. Shapley values help explain the "credit" each feature receives in the prediction, aiding interpretability and fairness analysis. For more information about SHAP values please visit [shap.readthedocs.io > Introduction](https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html)
 
-<img src="./figures/40.binary_classifier_shap_values.png" alt="drawing" width="600"/>
+<img src="./figures/42.binary_classifier_shap_values.png" alt="drawing" width="600"/>
 
 ## CDSS with Streamlit.
 
-Using NHS Streamlig App template[2]
+A simple web application was created using Streamlit surfacing the trained model to
+possible end-users. This application allows them to enter a set of medical metrics and understand the likelihood of suffering from a heart condition. 
+
+### Home page
+The home page contains the following sections:
+- **About** - A short description of the Project and the Clinical Decission Support System app.
+- **How to use** - A clear description of the steps that the user must follow in order to input the patient's metrics. It also includes a description of the analysis performed and how to interpret it.
+- **Data** - A short description of the key parameters used to predict heart diseases and the source of the training data.
+
+<img src="./figures/cdss_streamlit_patient_home.png" alt="drawing" width="600"/>
+
+### Patient Assessment
+This is the core of the application and contains:
+- **Patient settings** - a set of objects that enable the user the easily introduce of patient metrics. The parameters are already set to the most frequent value observed based on the training dataset to facilitate the task.
+- **Patient Assessment** - The result of the prediction, indicating the category (Healty or Heart Diseases) and the probability (from 0 to 1) associated with the prediction. It also includes the analysis of the influence of the different metrics on the prediction.
+
+<img src="./figures/cdss_streamlit_patient_assessment.png" alt="drawing" width="600"/>
 
 ## Future work
 - Produce a multi-lable classification model and compare the performance with the binary classification. I attempted it but the performance was very poor.No model and configuration I tried was able to differentiate between the different types of heart disease. In future iterations I will try to implement a Synthetic Minority Oversampling Technique (SMOTE)[3]
 
 - Impute missing values. This could help with the performance of the multi-label classifier by increasing the training dataset.
+
+- Improve the CDSS UI.
+
+- Deploy app into Streamlit Community Cloud so it can be used by others.
 
 ## References:
  [1] Janosi,Andras, Steinbrunn,William, Pfisterer,Matthias, and Detrano,Robert. (1988). Heart Disease. UCI Machine Learning Repository. https://doi.org/10.24432/C52P4X.
