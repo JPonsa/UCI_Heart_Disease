@@ -19,28 +19,28 @@ WORKING_DIR = os.getenv("WORKING_DIR")
 os.chdir(WORKING_DIR)
 
 # Create Data directory if doesn't exist
-if not os.path.isdir(WORKING_DIR + "/Data/"):
-    os.mkdir(WORKING_DIR + "/Data/")
+if not os.path.isdir(WORKING_DIR + "/data/"):
+    os.mkdir(WORKING_DIR + "/data/")
 
 # Create Origila_dataset directory if doesn't exist
-if not os.path.isdir(WORKING_DIR + "/Data/Original_dataset/"):
-    os.mkdir(WORKING_DIR + "/Data/Original_dataset/")
-    print(WORKING_DIR + "/Data/Original_dataset/ created")
+if not os.path.isdir(WORKING_DIR + "/data/Original_dataset/"):
+    os.mkdir(WORKING_DIR + "/data/Original_dataset/")
+    print(WORKING_DIR + "/data/Original_dataset/ created")
 
 # Download data from UCI
-if not os.path.isfile(WORKING_DIR + "/Data/Original_dataset/heart+disease.zip"):
+if not os.path.isfile(WORKING_DIR + "/data/Original_dataset/heart+disease.zip"):
     # Download file
     import urllib.request
 
     url = "https://archive.ics.uci.edu/static/public/45/heart+disease.zip"
-    path_to_zip_file = WORKING_DIR + "/Data/Original_dataset/heart+disease.zip"
+    path_to_zip_file = WORKING_DIR + "/data/Original_dataset/heart+disease.zip"
     urllib.request.urlretrieve(url, path_to_zip_file)
 
     # Unizip file
     import zipfile
 
     with zipfile.ZipFile(path_to_zip_file, "r") as zip_ref:
-        zip_ref.extractall(WORKING_DIR + "/Data/Original_dataset/")
+        zip_ref.extractall(WORKING_DIR + "/data/Original_dataset/")
 
 # table field names from original dataset
 column_names = [
@@ -61,7 +61,7 @@ column_names = [
 ]
 
 # Data was collected in from 4 locations: Cleveland, Hungary, Switzerland and Long Beach VA
-# See Data/Original_dataset/heart-diease.names
+# See data/Original_dataset/heart-diease.names
 
 data_centers = ["cleveland", "hungarian", "switzerland", "va"]
 
@@ -70,11 +70,11 @@ df = pd.DataFrame([], columns=["data_center"] + column_names)
 
 for center in data_centers:
     # Read the original dataset
-    center_file = f"Data/Original_dataset/processed.{center}.data"
+    center_file = f"data/Original_dataset/processed.{center}.data"
     sep = ","
     ## If reprocessed file exist use it instead of processed
-    if os.path.isfile(WORKING_DIR + f"Data/Original_dataset/reprocessed.{center}.data"):
-        center_file = f"Data/Original_dataset/reprocessed.{center}.data"
+    if os.path.isfile(WORKING_DIR + f"data/Original_dataset/reprocessed.{center}.data"):
+        center_file = f"data/Original_dataset/reprocessed.{center}.data"
         sep = " "
 
     tmp = pd.read_csv(WORKING_DIR + center_file, header=None, sep=sep)
@@ -94,6 +94,6 @@ df.dropna(subset=["num"], inplace=True)
 
 # Save concatenated data in a single file for further processing - No data changes
 output_file = (
-    WORKING_DIR + "/Data/uci_heart_disease.original_processed.four_databases.tsv"
+    WORKING_DIR + "/data/uci_heart_disease.original_processed.four_databases.tsv"
 )
 df.to_csv(output_file, sep="\t", index=False)
